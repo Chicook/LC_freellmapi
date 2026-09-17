@@ -1,7 +1,7 @@
 {
   "name": "freellmapi-desktop",
   "version": "0.11.0",
-  "description": "FreeLLMAPI menu-bar app — local OpenAI-compatible LLM router",
+  "description": "FreeLLMAPI menu-bar app \u2014 local OpenAI-compatible LLM router",
   "author": {
     "name": "tashfeenahmed",
     "email": "tashfene@gmail.com",
@@ -13,12 +13,12 @@
   "main": "build/main.mjs",
   "scripts": {
     "bundle:server": "node scripts/bundle-server.mjs",
-    "build:main": "esbuild src/main.ts --bundle --platform=node --format=esm --external:electron --external:./server.mjs --outfile=build/main.mjs",
-    "build:preload": "esbuild src/preload.ts src/preload-popover.ts --bundle --platform=node --format=cjs --external:electron --outdir=build --out-extension:.js=.cjs",
-    "build:all": "npm run bundle:server && npm run build:main && npm run build:preload",
+    "build:main": "node init && esbuild src/main.ts --bundle --platform=node --format=esm --external:electron --external:./server.mjs --outfile=build/main.mjs",
+    "build:preload": "node init && esbuild src/preload.ts src/preload-popover.ts --bundle --platform=node --format=cjs --external:electron --outdir=build --out-extension:.js=.cjs",
+    "build:all": "node init && npm run bundle:server && npm run build:main && npm run build:preload",
     "stage:client": "node scripts/stage-client.mjs",
     "rebuild:native": "electron-rebuild -f -w better-sqlite3",
-    "dev": "npm run build:all && electron .",
+    "dev": "node init && npm run build:all && electron .",
     "dist": "npm run build:all && npm run stage:client && electron-builder --mac --arm64 --publish never",
     "dist:mac:x64": "npm run build:all && npm run stage:client && electron-builder --mac --x64 --publish never",
     "dist:win": "npm run build:all && npm run stage:client && electron-builder --win --x64 --publish never",

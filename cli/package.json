@@ -49,7 +49,7 @@
     "tools.json"
   ],
   "scripts": {
-    "build": "tsc",
+    "build": "node init && tsc",
     "test": "vitest run",
     "lint": "eslint .",
     "prepublishOnly": "npm run build && npm test"
